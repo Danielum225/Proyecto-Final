@@ -6,35 +6,35 @@ class Usuario(Base):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    contraseña = db.Column(db.String(80), unique=False, nullable=False)
-    teléfono = db.Column(db.String(80), unique=False, nullable=False)
-    dirección = db.Column(db.String(80), unique=False, nullable=False)
-    país = db.Column(db.String(80), unique=False, nullable=False)
-    ciudad = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
+    phone = db.Column(db.String(80), unique=False, nullable=False)
+    direction = db.Column(db.String(80), unique=False, nullable=False)
+    country = db.Column(db.String(80), unique=False, nullable=False)
+    city = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
 class Productos(Base):
-    __tablename__ = 'productos'
+    __tablename__ = 'products'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120), unique=True, nullable=False)
-    precio = db.Column(db.String(80), unique=False, nullable=False)
-    descripción = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    price = db.Column(db.String(80), unique=False, nullable=False)
+    description = db.Column(db.String(120), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
 class Pedido(Base):
-    __tablename__ = 'pedido'
+    __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
-    usuario_id = Column(Integer, ForeignKey('usuario.id'))
-    fecha = db.Column(db.String(120), unique=True, nullable=False)
-    precio_total = db.Column(db.String(80), unique=False, nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    date = db.Column(db.String(120), unique=True, nullable=False)
+    total_price = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
 class DetallePedido(Base):
-    __tablename__ = 'detalle_pedido'
+    __tablename__ = 'order_detail'
     id = db.Column(db.Integer, primary_key=True)
-    pedido_id = Column(Integer, ForeignKey('pedido.id'))
-    cantidad = db.Column(db.String(120), unique=True, nullable=False)
-    precio = db.Column(db.String(80), unique=False, nullable=False)
+    order_id = Column(Integer, ForeignKey('order.id'))
+    amount = db.Column(db.String(120), unique=True, nullable=False)
+    price = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
