@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <>
-      <div className="row">
+      <div className="row container mx-auto">
         <div className="col-12">
           <div
             id="carouselExampleCaptions"
@@ -41,12 +41,6 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block text-dark">
-                  <h5>First slide label</h5>
-                  <p>
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
               </div>
               <div className="carousel-item">
                 <img
@@ -54,13 +48,6 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block text-dark">
-                  <h5>Second slide label</h5>
-                  <p>
-                    Some representative placeholder content for the second
-                    slide.
-                  </p>
-                </div>
               </div>
               <div className="carousel-item">
                 <img
@@ -68,12 +55,6 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block text-dark">
-                  <h5>Third slide label</h5>
-                  <p>
-                    Some representative placeholder content for the third slide.
-                  </p>
-                </div>
               </div>
             </div>
             <button
@@ -108,6 +89,26 @@ export const Home = () => {
           <h1>
             ¡Échale un vistazo a nuestras novedades en higiene y estética!
           </h1>
+        </div>
+      </div>
+      <div className="row d-flex container mx-auto">
+        <div className="col-4 mb-5">
+          <img
+            className="img-estetica"
+            src="https://www.perrogato.net/upload/blockblog/-iquest-que-es-el-trimming-y-como-lo-puedo-hacer-700x700.jpg"
+          ></img>
+        </div>
+        <div className="col-4 mb-5">
+          <img
+            className="img-estetica"
+            src="https://tibetmx.com/dev2021/wp-content/uploads/2022/03/Inicio2.jpg"
+          ></img>
+        </div>
+        <div className="col-4 mb-5">
+          <img
+            className="img-estetica"
+            src="https://www.tiendanimal.es/servicios/peluquerias-salonbelleza/wp-content/uploads/2022/04/perro-secadora.jpg"
+          ></img>
         </div>
       </div>
     </>
