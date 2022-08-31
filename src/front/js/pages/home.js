@@ -41,7 +41,7 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block">
+                <div className="carousel-caption d-none d-md-block text-dark">
                   <h5>First slide label</h5>
                   <p>
                     Some representative placeholder content for the first slide.
@@ -54,7 +54,7 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block">
+                <div className="carousel-caption d-none d-md-block text-dark">
                   <h5>Second slide label</h5>
                   <p>
                     Some representative placeholder content for the second
@@ -68,7 +68,7 @@ export const Home = () => {
                   className="d-block w-100"
                   alt="..."
                 />
-                <div className="carousel-caption d-none d-md-block">
+                <div className="carousel-caption d-none d-md-block text-dark">
                   <h5>Third slide label</h5>
                   <p>
                     Some representative placeholder content for the third slide.
@@ -101,6 +101,13 @@ export const Home = () => {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
+        </div>
+      </div>
+      <div className="row text-center mt-5">
+        <div className="col-12">
+          <h1>
+            ¡Échale un vistazo a nuestras novedades en higiene y estética!
+          </h1>
         </div>
       </div>
     </>
