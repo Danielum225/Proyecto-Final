@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Usuario(Base):
+class Usuario(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -13,27 +13,27 @@ class Usuario(Base):
     city = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-class Productos(Base):
+class Productos(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
-    description = db.Column(db.String(120), unique=True, nullable=False)
+    description = db.Column(db.String(120), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-class Pedido(Base):
+class Pedido(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    date = db.Column(db.String(120), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.String(120), unique=False, nullable=False)
     total_price = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
-class DetallePedido(Base):
+class DetallePedido(db.Model):
     __tablename__ = 'order_detail'
     id = db.Column(db.Integer, primary_key=True)
-    order_id = Column(Integer, ForeignKey('order.id'))
-    amount = db.Column(db.String(120), unique=True, nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+    amount = db.Column(db.String(120), unique=False, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
