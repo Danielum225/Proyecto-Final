@@ -52,7 +52,7 @@ export const Home = () => {
               <button className="btn btn-primary me-3">Inicio de sesion</button>
             </Link>
             <Link to="/registro">
-              <button className="btn btn-success me-5" type="submit">
+              <button className="btn btn-success me-4" type="submit">
                 Registro
               </button>
             </Link>
