@@ -59,6 +59,7 @@ export const Home = () => {
           </div>
         </div>
       </nav>
+
       <div className="row container mx-auto">
         <div className="col-12">
           <div
