@@ -5,3 +5,9 @@
 body {
   background-image: url("https://img.freepik.com/vector-gratis/fondo-selva-plana-organica_23-2148957621.jpg?w=2000");
 }
+.carousel-item {
+  max-height: 500px;
+}
+.caja-carousel {
+  margin-top: 80px;
+}
