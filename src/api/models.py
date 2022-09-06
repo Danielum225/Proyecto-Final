@@ -16,9 +16,23 @@ class User(db.Model):
 class Productos(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.Integer, primary_key=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    animal_type_id = db.Column(db.Integer, db.ForeignKey('animal_type.id'))
     name = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+class Categoria(db.Model):
+    __tablename__ = 'category'
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(80), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+class TipoAnimal(db.Model):
+    __tablename__ = 'animal_type'
+    id = db.Column(db.Integer, primary_key=True)
+    animal = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
 class Pedido(db.Model):
