@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/registro.css";
 import { Link } from "react-router-dom";
 
 export const Registro = () => {
+  const { store, actions } = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const [direccion, setDireccion] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [ciudad, setCiudad] = useState("");
+  const [pais, setPais] = useState("");
+
+  const handleSubmit = () => {
+    actions.registro(email, contraseña, direccion, telefono, ciudad, pais);
+  };
+
   return (
     <>
       <div className="container-fluid">
@@ -18,6 +31,7 @@ export const Registro = () => {
         <div className="row mt-5">
           <div className="col-6 mx-auto">
             <form
+              onSubmit={handleSubmit}
               class="row g-3 bg-white rounded-1 px-3 py-3 needs-validation"
               novalidate
             >
@@ -34,6 +48,9 @@ export const Registro = () => {
                   type="text"
                   class="form-control"
                   id="validationCustom01"
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
                   required
                 />
                 <div class="valid-feedback">Looks good!</div>
@@ -46,6 +63,9 @@ export const Registro = () => {
                   type="password"
                   class="form-control"
                   id="validationCustom02"
+                  onChange={(event) => {
+                    setContraseña(event.target.value);
+                  }}
                   required
                 />
                 <div class="valid-feedback">Looks good!</div>
@@ -59,6 +79,9 @@ export const Registro = () => {
                     type="text"
                     class="form-control"
                     id="validationCustomUsername"
+                    onChange={(event) => {
+                      setDireccion(event.target.value);
+                    }}
                     aria-describedby="inputGroupPrepend"
                     required
                   />
@@ -73,6 +96,9 @@ export const Registro = () => {
                   type="text"
                   class="form-control"
                   id="validationCustom03"
+                  onChange={(event) => {
+                    setTelefono(event.target.value);
+                  }}
                   required
                 />
                 <div class="invalid-feedback">Please provide a valid city.</div>
@@ -85,6 +111,9 @@ export const Registro = () => {
                   type="text"
                   class="form-control"
                   id="validationCustom03"
+                  onChange={(event) => {
+                    setCiudad(event.target.value);
+                  }}
                   required
                 />
                 <div class="invalid-feedback">Please select a valid state.</div>
@@ -97,6 +126,9 @@ export const Registro = () => {
                   type="text"
                   class="form-control"
                   id="validationCustom05"
+                  onChange={(event) => {
+                    setPais(event.target.value);
+                  }}
                   required
                 />
                 <div class="invalid-feedback">Please provide a valid zip.</div>
