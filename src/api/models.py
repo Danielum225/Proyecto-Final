@@ -21,6 +21,8 @@ class Productos(db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
+    categoria = db.relationship('Categoria', backref='products', lazy=True)
+    tipoAnimal = db.relationship('TipoAnimal', backref='products', lazy=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
 class Categoria(db.Model):
