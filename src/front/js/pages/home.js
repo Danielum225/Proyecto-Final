@@ -190,7 +190,7 @@ export const Home = () => {
       </div>
       <div className="container text-center mt-5">
         <div className="row">
-          <div className="col-6 col-md-12">
+          <div className="col-12">
             <h1 className="text-white">
               ¡Échale un vistazo a nuestras novedades en higiene y estética!
             </h1>
