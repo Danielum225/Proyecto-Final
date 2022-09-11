@@ -190,26 +190,26 @@ export const Home = () => {
       </div>
       <div className="container text-center mt-5">
         <div className="row">
-          <div className="col-12">
+          <div className="col-6 col-md-12">
             <h1 className="text-white">
               ¡Échale un vistazo a nuestras novedades en higiene y estética!
             </h1>
           </div>
         </div>
         <div className="row container mx-auto">
-          <div className="col-4 mb-5">
+          <div className="col-12 col-md-4 mb-5">
             <img
               className="img-estetica"
               src="https://www.perrogato.net/upload/blockblog/-iquest-que-es-el-trimming-y-como-lo-puedo-hacer-700x700.jpg"
             ></img>
           </div>
-          <div className="col-4 mb-5">
+          <div className="col-12 col-md-4 mb-5">
             <img
               className="img-estetica"
               src="https://tibetmx.com/dev2021/wp-content/uploads/2022/03/Inicio2.jpg"
             ></img>
           </div>
-          <div className="col-4 mb-5">
+          <div className="col-12 col-md-4 mb-5">
             <img
               className="img-estetica"
               src="https://www.tiendanimal.es/servicios/peluquerias-salonbelleza/wp-content/uploads/2022/04/perro-secadora.jpg"

@@ -29,7 +29,7 @@ export const Registro = () => {
       </div>
       <div className="container">
         <div className="row mt-5">
-          <div className="col-6 mx-auto">
+          <div className="col-12 col-md-6 mx-auto">
             <form
               onSubmit={handleSubmit}
               class="row g-3 bg-white rounded-1 px-3 py-3 needs-validation"
