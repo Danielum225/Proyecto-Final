@@ -12,7 +12,8 @@ export const Registro = () => {
   const [ciudad, setCiudad] = useState("");
   const [pais, setPais] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     actions.registro(email, contraseña, direccion, telefono, ciudad, pais);
   };
 

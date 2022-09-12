@@ -20,16 +20,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       registro: (email, contraseña, direccion, telefono, ciudad, pais) => {
         fetch(process.env.BACKEND_URL + "/api/registro", {
           method: "POST",
-          body: JSON.stringify(
-            email,
-            contraseña,
-            direccion,
-            telefono,
-            ciudad,
-            pais
-          ),
-          headers: { "Content-type": "aplicationo/json" },
-        }).then;
+          body: JSON.stringify({
+            email: email,
+            contraseña: contraseña,
+            direccion: direccion,
+            telefono: telefono,
+            ciudad: ciudad,
+            pais: pais,
+          }),
+          headers: { "Content-type": "application/json" },
+        });
       },
 
       getMessage: async () => {

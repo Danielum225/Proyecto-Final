@@ -16,3 +16,16 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/registro', methods=['POST'])
+def register():
+    email = request.json.get("email", None)
+    contraseña = request.json.get("contraseña", None)
+    direccion = request.json.get("direccion", None)
+    telefono = request.json.get("telefono", None)
+    ciudad = request.json.get("ciudad", None)
+    pais = request.json.get("pais", None)
+    usuario= User(email=email, password=contraseña, direction=direccion, phone=telefono, city=ciudad, country=pais, is_active=True)
+    db.session.add(usuario)
+    db.session.commit()
+    return jsonify({"message":"Hola mundo"}), 200
