@@ -30,6 +30,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
           headers: { "Content-type": "application/json" },
         });
+
+        const login = async (email, password) => {
+          const resp = await fetch(`https://your_api.com/token`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: "joe@gmail.com", password: "1234" }),
+          });
+
+          if (!resp.ok) throw Error("There was a problem in the login request");
+
+          if (resp.status === 401) {
+            throw "Invalid credentials";
+          } else if (resp.status === 400) {
+            throw "Invalid email or password format";
+          }
+          const data = await resp.json();
+          // save your token in the localStorage
+          //also you should set your user into the store using the setStore function
+          localStorage.setItem("jwt-token", data.token);
+
+          return data;
+        };
       },
 
       getMessage: async () => {
