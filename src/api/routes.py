@@ -31,7 +31,7 @@ def register():
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
 
-@app.route("/token", methods=["POST"])
+@api.route("/token", methods=["POST"])
 def create_token():
     email = request.json.get("email", None)
     contraseña = request.json.get("contraseña", None)
