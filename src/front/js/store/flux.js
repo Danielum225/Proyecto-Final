@@ -31,6 +31,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           headers: { "Content-type": "application/json" },
         });
 
+        crearProducto: (nombre, precio, descripcion) => {
+          fetch(process.env.BACKEND_URL + "/api/crearProducto", {
+            method: "POST",
+            body: JSON.stringify({
+              nombre: nombre,
+              precio: precio,
+              descripcion: descripcion,
+            }),
+            headers: { "Content-type": "application/json" },
+          });
+        };
+
         const login = async (email, password) => {
           const resp = await fetch(`https://your_api.com/token`, {
             method: "POST",

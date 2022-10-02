@@ -21,7 +21,9 @@ export const Home = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item text-dark">Comida</a>
+                    <Link to="/productos" className="dropdown-item text-dark">
+                      Comida
+                    </Link>
                   </li>
                   <li>
                     <a className="dropdown-item text-dark">Juguetes</a>

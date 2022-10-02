@@ -44,3 +44,13 @@ def create_token():
     # crea un nuevo token con el id de usuario dentro
     access_token = create_access_token(identity=user.id)
     return jsonify({ "token": access_token, "user_id": user.id })
+
+@api.route('/crearProducto', methods=['POST'])
+def new_product():
+    name = request.json.get("name", None)
+    precio = request.json.get("precio", None)
+    descripcion = request.json.get("descripcion", None)
+    productos= Productos(name=nombre, price=precio, description=descripcion, is_active=True)
+    db.session.add(usuario)
+    db.session.commit()
+    return jsonify({"message":"Hola mundo"}), 200
