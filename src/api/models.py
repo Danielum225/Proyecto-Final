@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     phone = db.Column(db.String(80), unique=False, nullable=False)
-    direction = db.Column(db.String(80), unique=False, nullable=False)
+    address = db.Column(db.String(80), unique=False, nullable=False)
     country = db.Column(db.String(80), unique=False, nullable=False)
     city = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
@@ -20,10 +20,23 @@ class Productos(db.Model):
     animal_type_id = db.Column(db.Integer, db.ForeignKey('animal_type.id'))
     name = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
+    image = db.Column(db.String(250), unique=False, nullable=False)
     description = db.Column(db.String(120), unique=False, nullable=False)
     categoria = db.relationship('Categoria', backref='products', lazy=True)
     tipoAnimal = db.relationship('TipoAnimal', backref='products', lazy=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    
+    def __repr__(self):
+        return f'<Productos {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "description": self.description,
+            "image": self.image,
+        }
 
 class Categoria(db.Model):
     __tablename__ = 'category'
@@ -55,6 +68,8 @@ class DetallePedido(db.Model):
 
     def __repr__(self):
         return f'<User {self.email}>'
+
+    
 
     def serialize(self):
         return {

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Productos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 
@@ -26,7 +26,7 @@ def register():
     telefono = request.json.get("telefono", None)
     ciudad = request.json.get("ciudad", None)
     pais = request.json.get("pais", None)
-    usuario= User(email=email, password=contraseña, direction=direccion, phone=telefono, city=ciudad, country=pais, is_active=True)
+    usuario= User(email=email, password=contraseña, address=direccion, phone=telefono, city=ciudad, country=pais, is_active=True)
     db.session.add(usuario)
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
@@ -47,10 +47,20 @@ def create_token():
 
 @api.route('/crearProducto', methods=['POST'])
 def new_product():
+    categoria = request.json.get("categoria", None)
+    tipoAnimal = request.json.get("tipoAnimal", None)
     name = request.json.get("name", None)
     precio = request.json.get("precio", None)
     descripcion = request.json.get("descripcion", None)
-    productos= Productos(name=nombre, price=precio, description=descripcion, is_active=True)
+    productos= Productos(categoria=categoria, tipoAnimal=tipoAnimal, name=nombre, price=precio, description=descripcion, is_active=True)
     db.session.add(usuario)
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
+
+@api.route('/mostrarProducto', methods=['Get'])
+def view_product():
+    productos = Productos.query.all()
+    data = []
+    for product in productos:
+        data.append(product.serialize())
+    return jsonify(data), 200

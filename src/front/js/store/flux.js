@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
+      Productos: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -30,40 +31,48 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
           headers: { "Content-type": "application/json" },
         });
+      },
 
-        crearProducto: (nombre, precio, descripcion) => {
-          fetch(process.env.BACKEND_URL + "/api/crearProducto", {
-            method: "POST",
-            body: JSON.stringify({
-              nombre: nombre,
-              precio: precio,
-              descripcion: descripcion,
-            }),
-            headers: { "Content-type": "application/json" },
-          });
-        };
+      crearProducto: (categoria, tipoAnimal, nombre, precio, descripcion) => {
+        fetch(process.env.BACKEND_URL + "/api/crearProducto", {
+          method: "POST",
+          body: JSON.stringify({
+            categoria: categoria,
+            tipoAnimal: tipoAnimal,
+            nombre: nombre,
+            precio: precio,
+            descripcion: descripcion,
+          }),
+          headers: { "Content-type": "application/json" },
+        });
+      },
 
-        const login = async (email, password) => {
-          const resp = await fetch(`https://your_api.com/token`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: "joe@gmail.com", password: "1234" }),
-          });
+      login: async (email, password) => {
+        const resp = await fetch(`https://your_api.com/token`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: "joe@gmail.com", password: "1234" }),
+        });
 
-          if (!resp.ok) throw Error("There was a problem in the login request");
+        if (!resp.ok) throw Error("There was a problem in the login request");
 
-          if (resp.status === 401) {
-            throw "Invalid credentials";
-          } else if (resp.status === 400) {
-            throw "Invalid email or password format";
-          }
-          const data = await resp.json();
-          // save your token in the localStorage
-          //also you should set your user into the store using the setStore function
-          localStorage.setItem("jwt-token", data.token);
+        if (resp.status === 401) {
+          throw "Invalid credentials";
+        } else if (resp.status === 400) {
+          throw "Invalid email or password format";
+        }
+        const data = await resp.json();
+        // save your token in the localStorage
+        //also you should set your user into the store using the setStore function
+        localStorage.setItem("jwt-token", data.token);
 
-          return data;
-        };
+        return data;
+      },
+
+      mostrarProducto: () => {
+        fetch(process.env.BACKEND_URL + "/api/mostrarProducto")
+          .then((data) => data.json())
+          .then((data) => setStore.store({ productos: data }));
       },
 
       getMessage: async () => {

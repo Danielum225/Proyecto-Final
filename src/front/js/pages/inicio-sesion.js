@@ -8,7 +8,8 @@ export const Inicio_sesion = () => {
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     actions.login(email, contraseña);
   };
 

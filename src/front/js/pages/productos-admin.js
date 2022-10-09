@@ -6,9 +6,11 @@ export const Productos_admin = () => {
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [tipoAnimal, setTipoAnimal] = useState("");
 
   const handleSubmit = () => {
-    actions.login(nombre, precio, descripcion);
+    actions.login(categoria, tipoAnimal, nombre, precio, descripcion);
   };
 
   return (
@@ -24,6 +26,34 @@ export const Productos_admin = () => {
                 <div className="col-6 mx-auto">
                   <h3 className="mx-auto">Nuevo producto</h3>
                 </div>
+              </div>
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">
+                  Tipo de animal
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  onChange={(event) => {
+                    setTipoAnimal(event.target.value);
+                  }}
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">
+                  Categoría
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  onChange={(event) => {
+                    setCategoria(event.target.value);
+                  }}
+                  aria-describedby="emailHelp"
+                />
               </div>
               <div className="mb-3">
                 <label for="exampleInputEmail1" className="form-label">
