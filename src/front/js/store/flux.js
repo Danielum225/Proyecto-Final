@@ -33,13 +33,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
-      crearProducto: (categoria, tipoAnimal, nombre, precio, descripcion) => {
+      crearProducto: (
+        categoria,
+        tipoAnimal,
+        nombre,
+        imagen,
+        precio,
+        descripcion
+      ) => {
         fetch(process.env.BACKEND_URL + "/api/crearProducto", {
           method: "POST",
           body: JSON.stringify({
             categoria: categoria,
             tipoAnimal: tipoAnimal,
             nombre: nombre,
+            imagen: imagen,
             precio: precio,
             descripcion: descripcion,
           }),
@@ -72,7 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       mostrarProducto: () => {
         fetch(process.env.BACKEND_URL + "/api/mostrarProducto")
           .then((data) => data.json())
-          .then((data) => setStore.store({ productos: data }));
+          .then((data) => setStore({ productos: data }));
       },
 
       getMessage: async () => {

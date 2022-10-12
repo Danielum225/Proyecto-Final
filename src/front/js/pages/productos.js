@@ -1,9 +1,12 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../store/appContext";
+import React, { useState, useEffect, useContext } from "react";
 import "../../styles/productos.css";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { Product_card } from "../component/product-card";
 
 export const Productos = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top bg-light">
@@ -111,6 +114,25 @@ export const Productos = () => {
           </div>
         </div>
       </nav>
+
+      <div className="container">
+        <div className="row">
+          {store?.productos?.map((products) => {
+            return (
+              <>
+                <div className="mt-5"></div>
+                <div className="col-12 col-md-4 mt-5">
+                  <Product_card
+                    products={products}
+                    key={products.id}
+                    id={products.id}
+                  />
+                </div>
+              </>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

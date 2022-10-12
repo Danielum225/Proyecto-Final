@@ -4,13 +4,14 @@ import { Context } from "../store/appContext";
 export const Productos_admin = () => {
   const { store, actions } = useContext(Context);
   const [nombre, setNombre] = useState("");
+  const [imagen, setImagen] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [categoria, setCategoria] = useState("");
   const [tipoAnimal, setTipoAnimal] = useState("");
 
   const handleSubmit = () => {
-    actions.login(categoria, tipoAnimal, nombre, precio, descripcion);
+    actions.login(categoria, tipoAnimal, nombre, imagen, precio, descripcion);
   };
 
   return (
@@ -65,6 +66,20 @@ export const Productos_admin = () => {
                   id="exampleInputEmail1"
                   onChange={(event) => {
                     setNombre(event.target.value);
+                  }}
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">
+                  Imagen
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  onChange={(event) => {
+                    setImagen(event.target.value);
                   }}
                   aria-describedby="emailHelp"
                 />

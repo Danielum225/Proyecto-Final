@@ -52,7 +52,7 @@ def new_product():
     name = request.json.get("name", None)
     precio = request.json.get("precio", None)
     descripcion = request.json.get("descripcion", None)
-    productos= Productos(categoria=categoria, tipoAnimal=tipoAnimal, name=nombre, price=precio, description=descripcion, is_active=True)
+    productos= Productos(categoria=categoria, tipoAnimal=tipoAnimal, name=nombre, image=imagen, price=precio, description=descripcion, is_active=True)
     db.session.add(usuario)
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
