@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Home = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top bg-light">
@@ -97,9 +100,13 @@ export const Home = () => {
                 </ul>
               </li>
             </ul>
-            <Link to="/inicio-sesion">
-              <button className="btn btn-primary me-3">Inicio de sesion</button>
-            </Link>
+            {store.login == true ? null : (
+              <Link to="/inicio-sesion">
+                <button className="btn btn-primary me-3">
+                  Inicio de sesion
+                </button>
+              </Link>
+            )}
             <Link to="/registro">
               <button className="btn btn-success me-4" type="submit">
                 Registro

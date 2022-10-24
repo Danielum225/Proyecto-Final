@@ -1,19 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      message: null,
-      demo: [
-        {
-          title: "FIRST",
-          background: "white",
-          initial: "white",
-        },
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
-      ],
+      login: false,
       Productos: [],
     },
     actions: {
@@ -56,10 +44,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: async (email, password) => {
-        const resp = await fetch(`https://your_api.com/token`, {
+        const resp = await fetch(process.env.BACKEND_URL + "/api/token", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: "joe@gmail.com", password: "1234" }),
+          body: JSON.stringify({ email: email, password: password }),
         });
 
         if (!resp.ok) throw Error("There was a problem in the login request");
@@ -73,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // save your token in the localStorage
         //also you should set your user into the store using the setStore function
         localStorage.setItem("jwt-token", data.token);
-
+        setStore({ login: true });
         return data;
       },
 

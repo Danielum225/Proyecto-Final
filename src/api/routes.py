@@ -4,7 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Productos
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -31,19 +31,32 @@ def register():
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
 
+def create_token(user):
+    token = create_access_token(identity=user.id)
+
+    return{
+        "token":token,
+        "email":user.email,
+        "id":user.id,
+    }
+
 @api.route("/token", methods=["POST"])
-def create_token():
-    email = request.json.get("email", None)
-    contraseña = request.json.get("contraseña", None)
-    # Consulta la base de datos por el nombre de usuario y la contraseña
-    user = User.filter.query(email=email, password=contraseña).first()
-    if user is None:
-          # el usuario no se encontró en la base de datos
-        return jsonify({"msg": "Bad username or password"}), 401
-    
-    # crea un nuevo token con el id de usuario dentro
-    access_token = create_access_token(identity=user.id)
-    return jsonify({ "token": access_token, "user_id": user.id })
+def login():
+    try:
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
+        # Consulta la base de datos por el nombre de usuario y la contraseña
+        user = User.query.filter_by(email=email, password=password).first()
+        if user is None:
+            # el usuario no se encontró en la base de datos
+            return jsonify({"msg": "Bad username or password"}), 401
+        
+        # crea un nuevo token con el id de usuario dentro
+        access_token = create_access_token(identity=user.id)
+        data_response = create_token(user)
+        return jsonify(data_response), 200
+    except Exception as e:
+        print(e)
 
 @api.route('/crearProducto', methods=['POST'])
 def new_product():

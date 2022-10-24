@@ -1,7 +1,5 @@
 import React from "react";
 import "../../styles/product_card.css";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 export const Product_card = ({ products }) => {
   return (
@@ -21,11 +19,3 @@ export const Product_card = ({ products }) => {
     </>
   );
 };
-
-/*Product_card.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  description: PropTypes.string,
-  image: PropTypes.string,
-}; */

@@ -121,7 +121,7 @@ export const Productos = () => {
             return (
               <>
                 <div className="mt-5"></div>
-                <div className="col-12 col-md-4 mt-5">
+                <div className="col-4 col-md-4 mt-5 mb-4">
                   <Product_card
                     products={products}
                     key={products.id}
