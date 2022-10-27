@@ -70,7 +70,7 @@ def new_product():
     db.session.commit()
     return jsonify({"message":"Hola mundo"}), 200
 
-@api.route('/mostrarProducto', methods=['Get'])
+@api.route('/mostrarProducto', methods=['GET'])
 def view_product():
     productos = Productos.query.all()
     data = []

@@ -116,21 +116,22 @@ export const Productos = () => {
       </nav>
 
       <div className="container">
+        <div className="mt-5"></div>
         <div className="row">
-          {store?.productos?.map((products) => {
-            return (
-              <>
-                <div className="mt-5"></div>
-                <div className="col-4 col-md-4 mt-5 mb-4">
-                  <Product_card
-                    products={products}
-                    key={products.id}
-                    id={products.id}
-                  />
-                </div>
-              </>
-            );
-          })}
+          {store.productos &&
+            store.productos.map((products) => {
+              return (
+                <>
+                  <div className="col-12 col-md-4 mt-5 mb-4">
+                    <Product_card
+                      products={products}
+                      key={products.id}
+                      id={products.id}
+                    />
+                  </div>
+                </>
+              );
+            })}
         </div>
       </div>
     </>

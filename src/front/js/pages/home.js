@@ -101,17 +101,19 @@ export const Home = () => {
               </li>
             </ul>
             {store.login == true ? null : (
-              <Link to="/inicio-sesion">
-                <button className="btn btn-primary me-3">
-                  Inicio de sesion
-                </button>
-              </Link>
+              <>
+                <Link to="/inicio-sesion">
+                  <button className="btn btn-primary me-3">
+                    Inicio de sesion
+                  </button>
+                </Link>
+                <Link to="/registro">
+                  <button className="btn btn-success me-4" type="submit">
+                    Registro
+                  </button>
+                </Link>
+              </>
             )}
-            <Link to="/registro">
-              <button className="btn btn-success me-4" type="submit">
-                Registro
-              </button>
-            </Link>
           </div>
         </div>
       </nav>
