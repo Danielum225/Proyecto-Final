@@ -5,8 +5,13 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Productos
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+import json
+import os
+import stripe
 
 api = Blueprint('api', __name__)
+
+stripe.api_key = "sk_test_51LyYrIDwE9VfIXGQC55jyQLaaMulaBEocmlD5bFIoIfRQ5ZdbcaVoOiSftccCL5MmKQOccM1IgZ4X0IlPnipejsc00m6RWgYKR"
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -77,3 +82,24 @@ def view_product():
     for product in productos:
         data.append(product.serialize())
     return jsonify(data), 200
+
+def calculate_order_amount(items):
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 1400
+
+@api.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        intent = stripe.PaymentIntent.create(
+            amount=calculate_order_amount(data['items']),
+            currency='usd'
+        )
+
+        return jsonify({
+          'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403
