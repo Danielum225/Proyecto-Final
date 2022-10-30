@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/product_card.css";
+import { Context } from "../store/appContext";
 
 export const Product_card = ({ products }) => {
+  const { store, actions } = useContext(Context);
+  const [Click, setClick] = useState(false);
+
+  const handleClick = () => {
+    actions.addFavorites(products.name);
+    Click == true ? setClick(false) : setClick(true);
+  };
   return (
     <>
       <div className="card" style={{ width: "18rem" }}>
@@ -11,9 +19,13 @@ export const Product_card = ({ products }) => {
             {products.name}, {products.price}€
           </h5>
           <p className="card-text">{products.description}</p>
-          <a href="#" className="btn btn-primary">
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn btn-warning"
+          >
             Comprar
-          </a>
+          </button>
         </div>
       </div>
     </>

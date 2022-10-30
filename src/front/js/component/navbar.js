@@ -101,7 +101,54 @@ export const Navbar = () => {
                 </ul>
               </li>
             </ul>
-            {store.login == true ? null : (
+            {store.login == true ? (
+              <div className="btn-group">
+                {store.favorites.length != 0 ? (
+                  <button
+                    type="button"
+                    className="btn btn-warning dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Carrito de la compra:
+                    <span className="px-2">{store.favorites.length}</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-warning dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Carrito de la compra:
+                  </button>
+                )}
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  {store.favorites.map((item, index) => {
+                    return (
+                      <li
+                        className="dropdown-item d-flex justify-content-between"
+                        key={index}
+                      >
+                        {item}{" "}
+                        <i
+                          className="fas fa-trash-alt"
+                          onClick={() => {
+                            actions.deleteFavorites(index);
+                          }}
+                        ></i>
+                      </li>
+                    );
+                  })}
+                  <button type="button" className="btn btn-warning ms-2">
+                    Finalizar compra
+                  </button>
+                </ul>
+              </div>
+            ) : (
               <>
                 <Link to="/inicio-sesion">
                   <button className="btn btn-primary me-3">

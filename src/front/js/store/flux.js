@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       login: false,
       Productos: [],
+      favorites: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -83,6 +84,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+
+      addFavorites: (item) => {
+        const store = getStore();
+
+        setStore({ favorites: [...store.favorites, item] });
+      },
+
+      deleteFavorites: (index) => {
+        const store = getStore();
+
+        setStore({
+          favorites: store.favorites.filter((favorites, i) => i !== index),
+        });
+      },
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
