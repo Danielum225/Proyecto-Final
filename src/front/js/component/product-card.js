@@ -7,7 +7,8 @@ export const Product_card = ({ products }) => {
   const [Click, setClick] = useState(false);
 
   const handleClick = () => {
-    actions.addFavorites(products.name);
+    actions.addFavorites(products);
+    actions.addTotalPrice(products);
     Click == true ? setClick(false) : setClick(true);
   };
   return (

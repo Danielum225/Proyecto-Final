@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: false,
       Productos: [],
       favorites: [],
+      totalPrice: 0,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -89,6 +90,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
 
         setStore({ favorites: [...store.favorites, item] });
+      },
+      addTotalPrice: (item) => {
+        const store = getStore();
+
+        setStore({ totalPrice: store.totalPrice + parseInt(item.price) });
       },
 
       deleteFavorites: (index) => {

@@ -133,7 +133,7 @@ export const Navbar = () => {
                         className="dropdown-item d-flex justify-content-between"
                         key={index}
                       >
-                        {item}{" "}
+                        {item.name}{" "}
                         <i
                           className="fas fa-trash-alt"
                           onClick={() => {
@@ -143,9 +143,11 @@ export const Navbar = () => {
                       </li>
                     );
                   })}
-                  <button type="button" className="btn btn-warning ms-2">
-                    Finalizar compra
-                  </button>
+                  <Link to="/pago" className="dropdown-item text-dark">
+                    <button type="button" className="btn btn-warning ms-2">
+                      Finalizar compra
+                    </button>
+                  </Link>
                 </ul>
               </div>
             ) : (
