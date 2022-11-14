@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/registro.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Registro = () => {
   const { store, actions } = useContext(Context);
@@ -12,9 +12,12 @@ export const Registro = () => {
   const [ciudad, setCiudad] = useState("");
   const [pais, setPais] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     actions.registro(email, contraseña, direccion, telefono, ciudad, pais);
+    navigate("/inicio-sesion");
   };
 
   return (

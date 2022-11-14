@@ -44,11 +44,33 @@ class Categoria(db.Model):
     category = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
+    def __repr__(self):
+        return f'<Categoria {self.category}>'
+
+    
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "category": self.category,
+        }
+
 class TipoAnimal(db.Model):
     __tablename__ = 'animal_type'
     id = db.Column(db.Integer, primary_key=True)
     animal = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<TipoAnimal {self.animal}>'
+
+    
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "animal": self.animal,
+        }
 
 class Pedido(db.Model):
     __tablename__ = 'order'

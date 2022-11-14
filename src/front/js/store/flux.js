@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       Productos: [],
       favorites: [],
       totalPrice: 0,
+      Categoria: [],
+      TipoAnimal: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -71,6 +73,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         fetch(process.env.BACKEND_URL + "/api/mostrarProducto")
           .then((data) => data.json())
           .then((data) => setStore({ productos: data }));
+      },
+
+      mostrarCategoria: () => {
+        fetch(process.env.BACKEND_URL + "/api/mostrarCategoria")
+          .then((data) => data.json())
+          .then((data) => setStore({ categoria: data }));
+      },
+
+      mostrarAnimal: () => {
+        fetch(process.env.BACKEND_URL + "/api/mostrarAnimal")
+          .then((data) => data.json())
+          .then((data) => setStore({ tipoAnimal: data }));
       },
 
       getMessage: async () => {

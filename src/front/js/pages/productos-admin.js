@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 
 export const Productos_admin = () => {
@@ -13,6 +13,14 @@ export const Productos_admin = () => {
   const handleSubmit = () => {
     actions.login(categoria, tipoAnimal, nombre, imagen, precio, descripcion);
   };
+
+  useEffect(() => {
+    actions.mostrarAnimal();
+  }, []);
+
+  useEffect(() => {
+    actions.mostrarCategoria();
+  }, []);
 
   return (
     <>
@@ -29,10 +37,32 @@ export const Productos_admin = () => {
                 </div>
               </div>
               <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Tipo de animal
                 </label>
-                <input
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected>Seleccionar el tipo de animal</option>
+                  {store.tipoAnimal &&
+                    store.tipoAnimal.map((tipoAnimal) => {
+                      return (
+                        <>
+                          <option
+                            onChange={(event) => {
+                              setTipoAnimal(event.target.value);
+                            }}
+                            tipoAnimal={tipoAnimal}
+                            id={tipoAnimal.id}
+                          >
+                            {tipoAnimal.animal}
+                          </option>
+                        </>
+                      );
+                    })}
+                </select>
+                {/* <input
                   type="text"
                   className="form-control"
                   id="exampleInputEmail1"
@@ -40,13 +70,35 @@ export const Productos_admin = () => {
                     setTipoAnimal(event.target.value);
                   }}
                   aria-describedby="emailHelp"
-                />
+                /> */}
               </div>
               <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Categoría
                 </label>
-                <input
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected>Seleccionar categoría</option>
+                  {store.categoria &&
+                    store.categoria.map((categoria) => {
+                      return (
+                        <>
+                          <option
+                            onChange={(event) => {
+                              setCategoria(event.target.value);
+                            }}
+                            categoria={categoria}
+                            id={categoria.id}
+                          >
+                            {categoria.category}
+                          </option>
+                        </>
+                      );
+                    })}
+                </select>
+                {/* <input
                   type="text"
                   className="form-control"
                   id="exampleInputEmail1"
@@ -54,10 +106,10 @@ export const Productos_admin = () => {
                     setCategoria(event.target.value);
                   }}
                   aria-describedby="emailHelp"
-                />
+                /> */}
               </div>
               <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Nombre
                 </label>
                 <input
@@ -71,7 +123,7 @@ export const Productos_admin = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Imagen
                 </label>
                 <input
@@ -85,7 +137,7 @@ export const Productos_admin = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   Precio
                 </label>
                 <input
