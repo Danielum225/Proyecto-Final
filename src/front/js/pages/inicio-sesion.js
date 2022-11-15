@@ -45,7 +45,7 @@ export const Inicio_sesion = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="prueba form-control"
                   id="exampleInputEmail1"
                   onChange={(event) => {
                     setEmail(event.target.value);

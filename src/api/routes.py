@@ -102,7 +102,8 @@ def create_payment():
           'clientSecret': intent['client_secret']
         })
     except Exception as e:
-        return jsonify(error=str(e)), 403
+        return jsonify(error=str(e)), 403       
+
 
 @api.route('/mostrarCategoria', methods=['GET'])
 def view_category():
@@ -123,7 +124,3 @@ def view_animal():
     for animal in tipoAnimal:
         data.append(animal.serialize())
     return jsonify(data), 200
-
-def calculate_order_amount(items):
-    
-    return 1400

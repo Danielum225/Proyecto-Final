@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
 import "../../styles/navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt-token");
+    navigate("/");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top bg-light">
@@ -101,8 +107,9 @@ export const Navbar = () => {
                 </ul>
               </li>
             </ul>
-            {store.login == true ? (
+            {localStorage.getItem("jwt-token") ? (
               <div className="btn-group">
+                <button onClick={handleLogOut}>Log out</button>
                 {store.favorites.length != 0 ? (
                   <button
                     type="button"

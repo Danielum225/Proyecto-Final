@@ -94,7 +94,7 @@ export const Home = () => {
       <div className="container text-center mt-5">
         <div className="row">
           <div className="col-12">
-            <h1 className="text-white">
+            <h1 className="text-white CAMBIA_ESTA_CLASE">
               ¡Échale un vistazo a nuestras novedades en higiene y estética!
             </h1>
           </div>
