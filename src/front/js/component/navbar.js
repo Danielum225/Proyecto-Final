@@ -109,7 +109,9 @@ export const Navbar = () => {
             </ul>
             {localStorage.getItem("jwt-token") ? (
               <div className="btn-group">
-                <button onClick={handleLogOut}>Log out</button>
+                <button className="btn btn-danger me-3" onClick={handleLogOut}>
+                  Cerrar sesión
+                </button>
                 {store.favorites.length != 0 ? (
                   <button
                     type="button"

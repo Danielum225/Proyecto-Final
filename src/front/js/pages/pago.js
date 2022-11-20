@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/pago.css";
-import { Link } from "react-router-dom";
 import { Navbar } from "../component/navbar";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -28,25 +27,28 @@ export const Pago = () => {
       <div className="mt-5 pt-5"></div>
       <div className="container bg-white mt-5 rounded-3">
         <div className="row">
-          <div className="col-7 mx-auto">
-            <h3 className="mx-auto">Lista de compra</h3>
+          <div className="col-3 mx-auto">
+            <h3 className="mx-auto mt-3">Lista de compra</h3>
           </div>
         </div>
         {buyList &&
           buyList.map((item, index) => {
             return (
               <div key={index}>
-                {item.name}
-                {item.price}
+                {item.name}: {item.price}
               </div>
             );
           })}
         <p>Precio total: {totalPrice}</p>
-      </div>
-      <div className="App">
-        <Elements stripe={promise}>
-          <CheckoutForm />
-        </Elements>
+        <div className="row">
+          <div className="col-5 mb-3 mx-auto">
+            <div className="App">
+              <Elements stripe={promise}>
+                <CheckoutForm />
+              </Elements>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -62,15 +62,6 @@ export const Productos_admin = () => {
                       );
                     })}
                 </select>
-                {/* <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  onChange={(event) => {
-                    setTipoAnimal(event.target.value);
-                  }}
-                  aria-describedby="emailHelp"
-                /> */}
               </div>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
@@ -98,15 +89,6 @@ export const Productos_admin = () => {
                       );
                     })}
                 </select>
-                {/* <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  onChange={(event) => {
-                    setCategoria(event.target.value);
-                  }}
-                  aria-describedby="emailHelp"
-                /> */}
               </div>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
@@ -150,7 +132,7 @@ export const Productos_admin = () => {
                 />
               </div>
               <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   Descripción
                 </label>
                 <input
