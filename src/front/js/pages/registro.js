@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/registro.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Registro = () => {
   const { store, actions } = useContext(Context);
@@ -12,8 +12,12 @@ export const Registro = () => {
   const [ciudad, setCiudad] = useState("");
   const [pais, setPais] = useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     actions.registro(email, contraseña, direccion, telefono, ciudad, pais);
+    navigate("/inicio-sesion");
   };
 
   return (
@@ -32,7 +36,7 @@ export const Registro = () => {
           <div className="col-12 col-md-6 mx-auto">
             <form
               onSubmit={handleSubmit}
-              class="row g-3 bg-white rounded-1 px-3 py-3 needs-validation"
+              className="row g-3 bg-white rounded-1 px-3 py-3 needs-validation"
               novalidate
             >
               <div className="row">
@@ -40,101 +44,112 @@ export const Registro = () => {
                   <h3 className="mx-auto">Registro</h3>
                 </div>
               </div>
-              <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">
+              <div className="col-md-4">
+                <label htmlhtmlFor="validationCustom01" class="form-label">
                   Email
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom01"
                   onChange={(event) => {
                     setEmail(event.target.value);
                   }}
                   required
                 />
-                <div class="valid-feedback">Looks good!</div>
+                <div className="valid-feedback">Looks good!</div>
               </div>
-              <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">
+              <div className="col-md-4">
+                <label htmlFor="validationCustom02" className="form-label">
                   Contraseña
                 </label>
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom02"
                   onChange={(event) => {
                     setContraseña(event.target.value);
                   }}
                   required
                 />
-                <div class="valid-feedback">Looks good!</div>
+                <div className="valid-feedback">Looks good!</div>
               </div>
-              <div class="col-md-4">
-                <label for="validationCustomUsername" class="form-label">
-                  Dirección
+              <div className="col-md-4">
+                <label
+                  htmlFor="validationCustomUsername"
+                  className="form-label"
+                >
+                  Teléfono
                 </label>
-                <div class="input-group has-validation">
+                <div className="input-group has-validation">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="validationCustomUsername"
                     onChange={(event) => {
-                      setDireccion(event.target.value);
+                      setTelefono(event.target.value);
                     }}
                     aria-describedby="inputGroupPrepend"
                     required
                   />
-                  <div class="invalid-feedback">Please choose a username.</div>
+                  <div className="invalid-feedback">
+                    Please choose a username.
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">
-                  Teléfono
+              <div className="col-md-6">
+                <label htmlFor="validationCustom03" className="form-label">
+                  Dirección
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom03"
                   onChange={(event) => {
-                    setTelefono(event.target.value);
+                    setDireccion(event.target.value);
                   }}
                   required
                 />
-                <div class="invalid-feedback">Please provide a valid city.</div>
+                <div className="invalid-feedback">
+                  Please provide a valid city.
+                </div>
               </div>
-              <div class="col-md-3">
-                <label for="validationCustom04" class="form-label">
+              <div className="col-md-3">
+                <label htmlFor="validationCustom04" className="form-label">
                   Ciudad
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom03"
                   onChange={(event) => {
                     setCiudad(event.target.value);
                   }}
                   required
                 />
-                <div class="invalid-feedback">Please select a valid state.</div>
+                <div className="invalid-feedback">
+                  Please select a valid state.
+                </div>
               </div>
-              <div class="col-md-3">
-                <label for="validationCustom05" class="form-label">
+              <div className="col-md-3">
+                <label htmlFor="validationCustom05" className="form-label">
                   País
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="validationCustom05"
                   onChange={(event) => {
                     setPais(event.target.value);
                   }}
                   required
                 />
-                <div class="invalid-feedback">Please provide a valid zip.</div>
+                <div className="invalid-feedback">
+                  Please provide a valid zip.
+                </div>
               </div>
-              <div class="col-12">
-                <button class="btn btn-primary" type="submit">
+              <div className="col-12">
+                <button className="btn btn-primary" type="submit">
                   Registrarse
                 </button>
               </div>

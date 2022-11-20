@@ -11,3 +11,7 @@ body {
 .caja-carousel {
   margin-top: 80px;
 }
+
+.CAMBIA_ESTA_CLASE {
+  background-color: rgba(0, 0, 0, 0.153) !important;
+}

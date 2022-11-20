@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/inicio-sesion.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Inicio_sesion = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     actions.login(email, contraseña);
+    navigate("/");
   };
 
   return (
@@ -41,7 +45,7 @@ export const Inicio_sesion = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="prueba form-control"
                   id="exampleInputEmail1"
                   onChange={(event) => {
                     setEmail(event.target.value);
